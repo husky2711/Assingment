@@ -1,0 +1,48 @@
+class Shape
+{
+       int num1=10;
+       void draw()
+       {
+              System.out.println("shape draw");
+       }
+       Shape()
+       {
+            this.num1=num1;
+        }
+}
+
+class Square extends Shape
+{
+       void sktech()
+       {
+        Syatem.out.println("child shape");
+       }
+       Square(int num3)
+       {
+            Super(9);
+           this.num3=num3;
+       }
+}
+
+class Circle extends Shape
+{
+        void make()
+      {
+            System.out.println("heirarchy");
+      }
+      Circle()
+      {
+          super(5);
+          System.out.println("xyz");
+       }
+}
+
+public class Demo10
+{
+	public static void main(String args[])
+     {
+          Circle c=new Circle();
+           c.make;
+     }
+}
+       

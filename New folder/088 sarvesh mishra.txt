@@ -1,0 +1,510 @@
+1) accept 10 numbers from user and add them inside the ArrayList.
+using ListIterator display all the numbers bidirectionally.
+
+Solution:-
+package Que1;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Scanner;
+import static java.lang.System.*;
+
+public class Arraylist {
+
+	public static void main(String[] args) {
+		List <Integer> a1= new ArrayList<Integer>();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter The 10 Elements in Arraylist:");
+	
+		for(int i=0; i<10; i++)
+		{
+			a1.add(sc.nextInt());
+		}
+		out.println("Size after adding Elements in a1:"+a1.size());
+		
+		System.out.println("Traverse Array From Begining to end:");
+		ListIterator ltr=a1.listIterator();
+		while(ltr.hasNext())
+		{
+			System.out.println(ltr.next());
+		}
+
+		System.out.println("Traverse Array From end to start:");
+		while(ltr.hasPrevious())
+		{
+			System.out.println(ltr.previous());
+		}	
+	}		
+}
+Output:-
+Enter The 10 Elements in Arraylist:
+10
+22
+35
+12
+34
+24
+54
+32
+13
+34
+Size after adding Elements in a1:10
+Traverse Array From Begining to end:
+10
+22
+35
+12
+34
+24
+54
+32
+13
+34
+Traverse Array From end to start:
+34
+13
+32
+54
+24
+34
+12
+35
+22
+10
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2) create LinkedList with the values 10,20,30 and 40.
+display it.
+now insert 500 in the beginning.
+	insert 400 at 2nd position.
+	add 1000 at the end.
+display the list again.
+
+Solution:-
+package Que2;
+
+import java.util.*;
+import static java.lang.System.*;
+public class LinkedListDemo {
+
+	public static void main(String[] args) {
+		List <Integer>l= new LinkedList<Integer>();
+		l.add(10);
+		l.add(20);
+		l.add(30);
+		l.add(40);
+		((LinkedList)l).addLast(1000);
+		((LinkedList)l).addFirst(500);
+		out.println("Display Content Of LL:" +l );
+		out.println("After updating index 2nd List:");
+		l.add(2, 400);
+		out.println("Display Final LL:" +l);
+	  }	
+	}
+Output:-
+Display Content Of LL:[500, 10, 20, 30, 40, 1000]
+After updating index 2nd List:
+Display Final LL:[500, 10, 400, 20, 30, 40, 1000]
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3) add 5 numbers inside CopyOnWriteArrayList and show how can you add one more number at the same time of traversal through its iterator.
+Solution:
+package Que3;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+
+public class Arraylist1 {
+
+	public static void main(String[] args) {
+	List<Integer> p = new CopyOnWriteArrayList<Integer>();
+	
+	p.add(10);
+	p.add(20);
+	p.add(30);
+	p.add(40);
+	p.add(60);
+	System.out.println("Print ArrayList Before Add:" +p);
+	
+	Iterator i = p.iterator();
+	while(i.hasNext())
+	{
+		System.out.println(i.next());
+		p.add(70);
+	}
+	System.out.println("After Modfication List is:" +p);
+	System.out.println("Do Modification:");
+	Iterator i2 = p.iterator();
+	while(i2.hasNext())
+	{
+		System.out.println(i2.next());
+	}
+	}
+
+}
+Output:-
+Print ArrayList Before Add:[10, 20, 30, 40, 60]
+10
+20
+30
+40
+60
+After Modfication List is:[10, 20, 30, 40, 60, 70, 70, 70, 70, 70]
+Do Modification:
+10
+20
+30
+40
+60
+70
+70
+70
+70
+70
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4) create a class "MyClass".
+create 5 different objects of it.
+add them in a ArrayList.
+store ArrayList in file.
+Now open a file, read ArrayList and display all objects.
+Solution:-
+package Que5;
+
+import java.io.Serializable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Myclass implements Serializable
+{
+	private int rollno;
+	private String name;
+	private String Course;
+	
+	public Myclass(int rollno, String name, String course) {
+		super();
+		this.rollno = rollno;
+		this.name = name;
+		Course = course;
+	}
+
+	@Override
+	public String toString() {
+		return "Myclass [rollno=" + rollno + ", name=" + name + ", Course=" + Course + "]";
+	}
+}
+public class ArrayStud {
+
+	public static void main(String[] args) {
+		
+		Myclass s1 = new Myclass(1, "Rahul", "C-Dac");
+	    Myclass s2 = new Myclass(2, "Jayesh", "E- Dac");
+	    Myclass s3 = new Myclass(3, "Shubham", "E-DBDA");
+	    Myclass s4 = new Myclass(4, "Sagar", "Java Core");
+	    Myclass s5 = new Myclass(5, "Bhavesh", "Python");
+		List<Object> ar = new ArrayList<Object>();
+		ar.add(s1);
+		ar.add(s2);
+		ar.add(s3);
+		ar.add(s4);
+		ar.add(s5);
+		System.out.println("MyArray list Is  "+ar);
+		File x = new File("F:\\work\\xyz.txt");
+		try(FileOutputStream fos = new FileOutputStream(x)) 
+		{
+			try(ObjectOutputStream oos = new ObjectOutputStream(fos))
+			{
+				oos.writeObject(ar);
+			}
+		}
+		catch(Exception ee)
+		{
+			ee.printStackTrace();
+		}
+	
+		try(FileInputStream fis = new FileInputStream(x))
+		{
+			try(ObjectInputStream ois = new ObjectInputStream(fis))
+			{
+				ois.readObject();
+			}
+		}
+		catch (Exception ee)
+		{
+			ee.printStackTrace();
+		}
+}
+}
+
+Output:
+MyArray list Is  [Myclass [rollno=1, name=Rahul, Course=C-Dac], Myclass [rollno=2, name=Jayesh, Course=E- Dac], Myclass [rollno=3, name=Shubham, Course=E-DBDA], Myclass [rollno=4, name=Sagar, Course=Java Core], Myclass [rollno=5, name=Bhavesh, Course=Python]]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5) create a HashMap.
+store  prn no. and students name of 10 students inside the HashMap.
+display it using iterator.
+Solution:-
+package Que4;
+
+
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Student {
+	
+
+	public static void main(String[] args) {
+		
+		Map <String,Integer>h=new HashMap<String,Integer>();
+		h.put("Rahul",1);
+		h.put("Raju",2);
+		h.put("Manish",3);
+		h.put("Danish",4);
+		h.put("Esha",5);
+		h.put("Falguni",6);
+		h.put("Ishan",7);
+		h.put("Jayesh",8);
+		h.put("Komal",9);
+		h.put("Kamayani",10);
+		Set<Entry<String,Integer>> set=h.entrySet();
+		
+		Iterator<Entry<String,Integer>> i=set.iterator();
+
+		while(i.hasNext())
+		{
+			Map.Entry<String,Integer> me=(Entry<String,Integer>)i.next();
+			System.out.print(me.getKey()+ ":");
+			System.out.println(me.getValue());
+		}
+	}
+
+
+}
+Output:-
+Komal:9
+Rahul:1
+Ishan:7
+Esha:5
+Falguni:6
+Danish:4
+Kamayani:10
+Manish:3
+Raju:2
+Jayesh:8
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6) create a hierarchy as follows
+	interface Game- play() method
+	Derive at least 3 classes from it. ( Cricket, Chess and Football )
+Now Create generic class which can take Game type (i.e. any sub type of Game) as parameter.
+In this class try to call the play() method of the class which is passed to it.
+Solution:-
+package maps;
+import static java.lang.System.*;
+
+interface Game {void  play();
+	
+
+}
+class Cricket implements Game
+{
+	public void play()
+	{
+		out.println("in draw of cricket");
+	}
+}
+class Chess implements Game
+{
+	public void play()
+	{
+		out.println("in draw of chess");
+	}
+	}
+	
+
+class Football implements Game
+{
+	public  void play(){
+		System.out.println("in Football");
+		
+	}
+	
+}
+class common<T extends Game>
+{
+	T ob;
+	public common(T ob)
+	{
+		this.ob=ob;
+	}
+	public void fun()
+	{
+		ob.play();
+	}
+}
+public class Demo1
+{
+	
+	public static void main(String args[])
+	{
+		common<Football> c1=new common<Football>(new Football());
+		c1.fun();
+		out.println("in main   "+c1);
+
+		System.out.println();
+	}
+}
+utput:
+in Football
+in main   Que6.common@5594a1b5
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7) Define a class "Employee" with following members
+empid, empname, design, basic.
+Define a parameterised constructor which will take all these values while creating an instance.
+Also define "disp()" method which will display all these details.
+create 4 employees and save them in "ArrayList".
+Now save this "ArrayList" in a file.
+Open file , read "ArrayList" , traverse ArrayList and call "disp()" for all the objects.
+
+Solution:-
+package Que7;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import java.io.Serializable;
+
+public class Employee implements Serializable {
+	private int empid;
+	private String ename;
+	private int design;
+	private int Basic;
+	
+	public Employee(int empid, String ename, int design, int basic) {
+		super();
+		this.empid = empid;
+		this.ename = ename;
+		this.design = design;
+		this.Basic = basic;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [empid=" + empid + ", ename=" + ename + ", design=" + design + ", Basic=" + Basic + "]";
+	}
+}
+public class Arraylist12 {
+
+	public static void main(String[] args) {
+		Employee e1=new Employee(001, "Rahul", 1, 2000);
+		Employee e2=new Employee(002, "Jayesh", 2, 2000);
+		Employee e3=new Employee(003, "Bhairavi", 3, 4000);
+		Employee e4=new Employee(004, "Bhavesh", 4, 3000);
+		
+		List<Object> arr = new ArrayList<Object>();
+		arr.add(e1);
+		arr.add(e2);
+		arr.add(e3);
+		arr.add(e4);
+		
+		System.out.println(arr);
+		File f = new File("F:\\work\\abc.txt");
+		try(FileOutputStream fos = new FileOutputStream(f))
+		{
+			try(ObjectOutputStream oos = new ObjectOutputStream(fos))
+			{
+				oos.writeObject(arr);
+			}
+		}
+		catch(Exception ee)
+		{
+		 ee.printStackTrace();
+		}
+		
+		try(FileInputStream fis = new FileInputStream(f))
+		{
+			try(ObjectInputStream ois = new ObjectInputStream(fis))
+			{
+				ois.readObject();
+			}
+		}
+		catch(Exception ee)
+		{
+			ee.printStackTrace();
+		}	
+	}
+	
+
+}
+Output:-
+
+[Employee [empid=1, ename=Rahul, design=1, Basic=2000], Employee [empid=2, ename=Jayesh, design=2, Basic=2000], Employee [empid=3, ename=Bhairavi, design=3, Basic=4000], Employee [empid=4, ename=Bhavesh, design=4, Basic=3000]]
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8) maintain ICC ranking of at least 5 batsmen in the "HashMap". 
+list should be maintain as "rank" "name"
+e.g. "1" "Rohit Sharma".
+Now ask any rank bet'n 1 to 5 from user. ( user input).
+if user asks for a particular rank , retrieve batsman name for that rank from the HashMap.
+Solution:
+package Que8;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class MapDemo {
+
+	public static void main(String[] args) {
+		Map<Integer,String> map = new HashMap<>();
+		map.put(1, "Rohit Sharma");
+		map.put(2, "virat Kohli");
+		map.put(3, "David Warner");
+		map.put(4, "joe Root");
+		map.put(5, "Babar Azam");
+		 Scanner sc = new Scanner(System.in);
+		System.out.println("Enter rank:");
+		
+		while(true)
+		{
+			int a = sc.nextInt();
+			if(a==1 || a<=5)
+			{
+				String name = map.get(a);
+				System.out.println(name);
+			}
+			else
+			{
+			System.out.println("Invalid Rank input");
+			}
+		}
+		
+	}
+
+}
+Output:-
+Enter rank:
+4
+joe Root
+Enter rank:
+11
+Invalid Rank input
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+

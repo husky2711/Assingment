@@ -1,0 +1,74 @@
+question 2-
+package Lambda;
+interface Second
+{
+	void disp4();
+}
+
+public class Demo {
+
+	public static void main(String[] args) {
+		Second s1=()->{ System.out.println("in disp4");};
+        s1.disp4();
+        Second s2=()->{ System.out.println("in disp4");};
+	    s2.disp4();
+	}
+
+}
+
+question 3-
+package Lambda;
+interface Myinterface
+{
+	void fun();
+}
+
+public class Demo {
+	static void Perform(Myinterface m) {
+		m.fun();
+	}
+
+	public static void main(String[] args) {
+		Perform(()->{ System.out.println("in fun method");});		
+	}
+
+}
+question 4-
+package Lambda;
+interface Calculator
+{
+	int multiply(int a,int b);
+}
+
+
+public class CalcDemo {
+
+	public static void main(String[] args) {
+		Calculator c=(a,b)->{return a*b;};
+		System.out.println(c.multiply(15, 15));
+		System.out.println(c);
+	}
+}
+question 5-
+package Lambda;
+class Display
+{
+	synchronized void disp() {
+		for(int i=1;i<=10;i++) {
+			System.out.println(i);
+		}
+	}
+}
+
+
+public class L1 {
+
+	public static void main(String[] args) {
+	   Display d=new Display();
+		Runnable r=()->{ d.disp();};
+		Thread t1=new Thread(r);
+		Thread t2=new Thread(r);
+		t1.start();
+		t2.start();
+	}
+}

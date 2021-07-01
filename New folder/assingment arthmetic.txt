@@ -1,0 +1,143 @@
+1) accept two numbers and add them.
+
+package assingment;
+
+import java.util.Scanner;
+
+public class assingment1 {
+
+	public static void main(String[] args) {
+		int c;
+		Scanner sc=new Scanner(System.in);
+		int a = sc.nextInt();
+		int b= sc.nextInt();
+		c=a+b;
+		System.out.println(c);
+		
+		
+
+	}
+
+}
+
+2) accept two numbers and subtract them.
+
+package assingment;
+
+import java.util.Scanner;
+
+public class assingment1 {
+
+	public static void main(String[] args) {
+		int c;
+		Scanner sc=new Scanner(System.in);
+		int a = sc.nextInt();
+		int b= sc.nextInt();
+		c=a-b;
+		System.out.println(c);
+		
+		
+
+	}
+
+}
+
+3) accept two numbers and multiply them
+
+package assingment;
+
+import java.util.Scanner;
+
+public class assingment1 {
+
+	public static void main(String[] args) {
+		int c;
+		Scanner sc=new Scanner(System.in);
+		int a = sc.nextInt();
+		int b= sc.nextInt();
+		c=a*b;
+		System.out.println(c);
+		
+		
+
+	}
+
+}
+
+4) accept two numbers and devide them.
+
+package assingment;
+
+import java.util.Scanner;
+
+public class assingment1 {
+
+	public static void main(String[] args) {
+		int c;
+		Scanner sc=new Scanner(System.in);
+		int a = sc.nextInt();
+		int b= sc.nextInt();
+		c=a/b;
+		System.out.println(c);
+		
+		
+
+	}
+
+}
+
+5) accept two numbers and check whether first number is greater or
+second number is greater or they are equal.
+
+package assingment;
+
+import java.util.Scanner;
+
+public class assingment1 {
+
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		int a = sc.nextInt();
+		int b= sc.nextInt();
+		if(a>b) {
+			System.out.println("a is greater than b");
+		}
+		else if(a==b) {
+			System.out.println("a is equal to b");
+		}
+		else {
+			System.out.println("a is smaller than b");
+		}
+		
+		
+
+	}
+
+}
+
+6) accept a number and check whether it is divisible by 3 or not.
+
+package assingment;
+
+import java.util.Scanner;
+
+public class assingment1 {
+
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		int a = sc.nextInt();
+		if(a%3==0) {
+			System.out.println("a is divisible by 3");
+		}
+		else {
+			System.out.println("a is not divisible by 3");
+		}
+		
+		
+		
+
+	}
+
+}

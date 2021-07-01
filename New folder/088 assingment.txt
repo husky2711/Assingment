@@ -1,0 +1,88 @@
+question3-
+package Threads1;
+
+public class Fh1 implements Runnable{
+	public synchronized void run() {
+		for(int i=0;i<=5;i++) {
+			System.out.println("Exec"+  i );
+		}
+	}
+	public static void main(String args[]) {
+		Fh1 f=new Fh1();
+		Thread t1=new Thread(f);
+		Thread t2=new Thread(f);
+		Thread t3=new Thread(f);
+		t1.start();
+		t2.start();
+		t3.start();
+	}
+}
+
+question 4-
+package Threads1;
+
+public class Fh1 implements Runnable{
+	 
+	 static void disp1() {
+		 synchronized(Fh1.class) {
+		 for(int i=1;i<=10;i++) {
+			 System.out.println(i);
+			/* try {
+				 Thread.sleep(100);
+			 }
+			 catch(InterruptedException ie){
+				 
+			 }*/
+		 }
+		 }
+	 }
+	 public void run() {
+		 disp1();
+	 }
+	 public static void main(String args[]) {
+		 Fh1 f=new Fh1();
+		 Thread t1=new Thread(f);
+		 Thread t2=new Thread(f);
+		 t1.start();
+		 t2.start();
+	 }
+	 }
+question 5-
+
+package Threads1;
+
+class A implements Runnable
+{
+	public void run()
+	{
+		for(int i = 1 ;i<=50;i++)
+		{
+			System.out.println(i);
+		}
+	}
+}
+
+class B implements Runnable
+{
+	public void run()
+	{
+		for(int i = 50;i>0;i--)
+		{
+			System.out.println(i);
+		}
+	}
+}
+
+public class Example5 {
+
+	public static void main(String[] args) {
+		A a=new A();
+		B b= new B();
+		Thread t1=new Thread(a);
+		Thread t2=new Thread(b);
+		t1.start();
+		t2.start();
+
+	}
+
+}

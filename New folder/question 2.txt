@@ -1,0 +1,23 @@
+class Vehicle
+{
+    public void start()
+   {
+     System.out.println("parent class");
+   }
+}
+class FourWheeler extends Vehicle
+{
+     public void start()
+    {
+          System.out.println("overridding");
+    }
+}
+
+public class Demo10
+{
+	public static void main(String args[])
+     {
+          FourWheeler f= new FourWheeler();
+           f.start();
+     }
+}

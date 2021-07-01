@@ -1,0 +1,182 @@
+question 1-
+package Jdbcc;
+import java.sql.*;
+import java.util.Scanner;
+public class Jdb2 {
+
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter your details");
+		System.out.println("Name: ");
+		String Name=sc.nextLine();
+		System.out.println("Rollno: ");
+		int rollno=sc.nextInt();
+		System.out.println("age: ");
+		int age=sc.nextInt();
+		String ss="jdbc:mysql://localhost:3306/mydb1";
+		try(Connection con=DriverManager.getConnection(ss,"root","root"))
+		{
+			System.out.println("Implementation class is\t"+con.getClass());
+			PreparedStatement pst=con.prepareStatement("insert into student values(?,?,?)");
+			pst.setInt(1,rollno);
+			pst.setString(2, Name);
+			//pst.setInt(2,rollno);
+			pst.setInt(3,age);
+			int mod=pst.executeUpdate();
+			if(mod>0)
+			{
+				System.out.println("Records are successfully added");
+			}
+			
+		}
+		catch(Exception ee)
+		{
+			System.out.println(ee);
+		}
+	}
+}
+
+question 2-
+package Jdbcc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class Jdb3 {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("enter the designation: ");
+		String desg=sc.nextLine();
+		String ss="jdbc:mysql://localhost:3306/mydb1";
+		try(Connection con=DriverManager.getConnection(ss,"root","root"))
+		{
+			System.out.println("Implementation class is\t"+con.getClass());
+			PreparedStatement pst=con.prepareStatement("select * from Employee where desg=?");
+			pst.setString(1, desg);
+			ResultSet rs=pst.executeQuery();
+			//System.out.println(pst);
+			while(rs.next())
+			{
+				int Empid1=rs.getInt(1);
+				String empname1=rs.getString(2);
+				String desg1=rs.getString(3);
+				System.out.println(Empid1+"\t"+empname1+"\t"+desg1);
+			}
+		}
+		catch(Exception ee)
+		{
+			ee.printStackTrace();
+		}
+
+	}
+
+}
+question 3-
+package Jdbcc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+class Product{
+	private int pidno,qtyno;
+	private int cost;
+	private String pname;
+	/**
+	 * @return the pidno
+	 */
+	public int getPidno() {
+		return pidno;
+	}
+	/**
+	 * @param pidno the pidno to set
+	 */
+	public void setPidno(int pidno) {
+		this.pidno = pidno;
+	}
+	/**
+	 * @return the qtyno
+	 */
+	public int getQtyno() {
+		return qtyno;
+	}
+	/**
+	 * @param qtyno the qtyno to set
+	 */
+	public void setQtyno(int qtyno) {
+		this.qtyno = qtyno;
+	}
+	/**
+	 * @return the cost
+	 */
+	public int getCost() {
+		return cost;
+	}
+	/**
+	 * @param cost the cost to set
+	 */
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+	/**
+	 * @return the pname
+	 */
+	public String getPname() {
+		return pname;
+	}
+	/**
+	 * @param pname the pname to set
+	 */
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+	public Product(int pidno, int qtyno, int cost, String pname) {
+		super();
+		this.pidno = pidno;
+		this.qtyno = qtyno;
+		this.cost = cost;
+		this.pname = pname;
+	}
+	@Override
+	public String toString() {
+		return "Product [pidno=" + pidno + ", qtyno=" + qtyno + ", cost=" + cost + ", pname=" + pname + "]";
+	}
+	
+	
+}
+public class Jdb4 {
+
+	public static void main(String[] args) {
+		Product p1=new Product(1,100,5000,"sugar");
+		System.out.println(p1);
+		String ss="jdbc:mysql://localhost:3306/mydb1";
+		try(Connection con=DriverManager.getConnection(ss,"root","root"))
+		{
+			PreparedStatement pst=con.prepareStatement("?,?,?,?");
+			pst.setInt(1, p1.getPidno());
+			pst.setInt(2, p1.getQtyno());
+			pst.setInt(3,  p1.getCost());
+			pst.setString(4, p1.getPname());
+			pst.executeUpdate();
+			p1=null;
+			pst=con.prepareStatement("select * from product");
+			ResultSet rs=pst.executeQuery();
+			rs.next();
+			Product p2=new Product(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4));
+			System.out.println(p2);
+		}
+		catch(Exception ee)
+		{
+			ee.printStackTrace();
+		}
+
+	}
+
+}

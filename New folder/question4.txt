@@ -1,0 +1,47 @@
+class Top1
+{
+     void disp1()
+       {
+          System.out.println("parent class");
+       }
+}
+
+
+class Bottom1 extends Top1
+{
+    void disp1()
+        {
+            //code
+        }
+}
+
+class Bottom2 extends Top1
+{
+    void disp()
+       {
+            //code
+       }
+
+}
+
+class Bottom3 extends Top1
+{
+     void disp()
+       {
+         //code
+       }
+}
+
+public class Demo10
+{
+      static void perform(Top1 ref)
+    {
+          ref.disp();
+
+    }
+	public static void main(String args[])
+      {
+           perform(new Bottom1());
+           perform(new Bottom2());
+       }
+}

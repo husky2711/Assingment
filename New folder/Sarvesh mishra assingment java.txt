@@ -1,0 +1,164 @@
+1-
+package Game;
+abstract class Game{
+	abstract void play();
+}
+class FootBall extends Game{
+	void play() {
+		System.out.println("play FootBall");
+	}
+}
+class Tennis extends Game{
+void play() {
+		System.out.println("play Tennis");
+	}
+}
+class Cricket extends Game{
+void play() {
+		System.out.println("play Cricket");
+	}
+}
+   
+
+public class GamesDemo {
+
+	public static void main(String[] args) {
+		Game g[]=new Game[3];
+		g[0]=new FootBall();
+		g[1]=new Cricket();
+		g[2]=new Tennis();
+		for(int i=0;i<g.length;i++) {
+			if(g[i] instanceof Cricket) {
+				g[i].play();
+			}
+		}
+		
+		
+			}
+
+}
+
+2-
+/**
+ * 
+ */
+package Course;
+
+/**
+ * @author saurabh
+ *
+ */
+public class Dac {
+	void term1(){
+		System.out.println("int term1");
+	}
+		void term2() {
+			System.out.println("in term2");
+		}
+	}
+
+/**
+ * 
+ */
+package Course;
+
+/**
+ * @author saurabh
+ *
+ */
+public class Predac {
+	void set(){
+		System.out.println("in set method");
+	}
+
+}
+
+/**
+ * 
+ */
+package Course;
+
+/**
+ * @author saurabh
+ *
+ */
+public class Basic {
+ void finaltest(){
+	System.out.println("final test going on");
+}
+}
+
+package Course;
+
+public class vitaApp {
+
+	public static void main(String[] args) {
+		Dac c =new Dac();
+		c.term1();
+		c.term2();
+		Predac p=new Predac();
+		p.set();
+		Basic b=new Basic();
+		b.finaltest();
+	}
+
+}
+
+4-
+public class Item {
+	String itemid;
+	String name;
+	int cost;
+	Item(String itemid,String name,int cost){
+		this.itemid=itemid;
+		this.cost=cost;
+		this.name=name;
+		System.out.println("in parametrized constructor");
+	}
+	void display(){
+		System.out.println(itemid);
+		System.out.println(name);
+		System.out.println(cost);
+	}
+
+	public static void main(String[] args) {
+		Item i=new Item("a","beer",175);
+		i.display();
+
+	}
+
+}
+
+2-
+public class MyArithException extends Exception {
+	public MyArithException (String arg) {
+		super(arg);
+	}
+}
+public class Calculator {
+	public int caldouble(int num) throws MyArithException {
+		if(num == 0){
+			throw new MyArithException("Zero Not Allowed");	
+		}
+		else if(num < 0){
+			throw new MyArithException("Negative Not Allowed");	
+		}else {
+			return (num+num);
+		}
+				
+	}
+}
+public class MyCalcApp {
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		Calculator ob= new Calculator();	
+		try {
+		ob.caldouble(num);
+		}
+		catch(MyArithException e){
+			System.out.println(e);
+		}
+	
+	}
+}

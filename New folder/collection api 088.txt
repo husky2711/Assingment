@@ -1,0 +1,374 @@
+question 1-
+package Pack1;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Scanner;
+
+public class ArraylistDemo {
+
+	public static void main(String[] args) 
+	{
+		List<Integer>a1=new ArrayList<Integer>();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter 10 element in ArrayList ");
+		for(int i=0;i<10;i++)
+		{
+			a1.add(sc.nextInt());
+		}
+		System.out.println("size after adding the element"+a1.size());
+		System.out.println("Traverse array from start to end");
+		ListIterator ltr=a1.listIterator();
+		while(ltr.hasNext())
+				{
+			System.out.println(ltr.next());
+				}
+		System.out.println("Travesrse from end to Start");
+		while(ltr.hasPrevious())
+		{
+			System.out.println(ltr.previous());
+		}
+	
+	}
+
+}
+question 2-
+package Pack1;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class LinkListDemo {
+
+	public static void main(String[] args) {
+		List<Integer>l=new LinkedList<Integer>();
+		l.add(10);
+		l.add(20);
+		l.add(30);
+		l.add(40);
+		System.out.println("content of linklist"+l);
+		l.add(0, 500);
+		l.add(2, 400);
+		System.out.println("content of linklist"+l);
+		l.add(6, 1000);
+		System.out.println("content of linklist"+l);
+
+	}
+
+}
+question 4-
+package Pack1;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+class MyClass implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String name;
+	int Rollno;
+	String course;
+	public MyClass(String name,int Rollno,String course) {
+		this.course=course;
+		this.Rollno=Rollno;
+		this.name=name;
+		
+	}
+	@Override
+	public String toString() {
+		return "MyClass [name=" + name + ", Rollno=" + Rollno + ", course=" + course + "]";
+	}
+}
+
+public class Demoo {
+
+	public static void main(String[] args) 
+	{
+		MyClass c1=new MyClass("Sarvesh",23,"Dac");
+		MyClass c2=new MyClass("tommy",20,"btech");
+		MyClass c3=new MyClass("jhonny",24,"mtech");
+		MyClass c4=new MyClass("Saurabh",27,"job");
+		MyClass c5=new MyClass("Vishwas",25,"evonic");
+		List<Object>a3=new ArrayList<Object>();
+		a3.add(c1);
+		a3.add(c2);
+		a3.add(c3);
+		a3.add(c4);
+		a3.add(c5);
+		try(FileOutputStream fos=new FileOutputStream("d://xyz.txt"))
+		{
+			try(ObjectOutputStream oos=new ObjectOutputStream(fos))
+			{
+				oos.writeObject(a3);
+			}
+		}
+        catch(Exception ie)
+		{
+        	ie.printStackTrace();
+		}
+		System.out.println("writing completed");
+		System.out.println("reading starts");
+		try(FileInputStream fis=new FileInputStream("d://xyz.txt"))
+		{
+			try(ObjectInputStream ois=new ObjectInputStream(fis))
+			{
+				ois.readObject();
+			}
+		}
+		catch(Exception ie)
+		{
+        	ie.printStackTrace();
+		}
+		System.out.println(a3);
+	}
+
+}
+question 3-
+package Pack1;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+
+
+public class CopyOnWriteArrayListDemo {
+
+	public static void main(String[] args)
+	{
+		List<Integer> c=new CopyOnWriteArrayList<Integer>();
+		c.add(5);
+		c.add(1);
+		c.add(7);
+		c.add(2);
+		c.add(3);
+		System.out.println("Traverse the list");
+	    Iterator i= c.iterator();
+		while(i.hasNext())
+		{
+			//c.add(16);
+			System.out.println(i.next());
+			c.add(14);
+		}
+		System.out.println("after adding\t"+c);
+		System.out.println("size after adding the elements"+c.size());
+	}
+
+}
+
+question 5-
+package serealization;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class Hashdemo {
+
+	public static void main(String[] args) {
+		Map<Integer,String>j=new HashMap<Integer,String>();
+		j.put(5, "prashant");
+		j.put(8,"Sarvesh");
+		j.put(18, "vishwas");
+		j.put(16, "vishal");
+		j.put(14, "suyash");
+		j.put(7, "varun");
+		j.put(6, "faiz");
+		j.put(10,"malbika");
+		j.put(17, "purva");
+		Set<Entry<Integer,String>> set=j.entrySet();
+		Iterator<Entry<Integer, String>> i=set.iterator();
+		while(i.hasNext())
+		{
+			Map.Entry<Integer,String> me=(Entry<Integer, String>)i.next();
+			System.out.print(me.getKey()+ ":");package serealization;
+
+
+			System.out.println(me.getValue());
+		}
+		System.out.println();
+
+	}
+
+}
+question 6-
+interface Game
+{
+	void play();
+}
+class Cricket implements Game
+{
+	public void play()
+	{
+		System.out.println("play Cricket");
+	}
+}
+class Chess implements Game
+{
+	public void play()
+	{
+		System.out.println("play chess");
+	}
+}
+class Football implements Game
+{
+	public void play()
+	{
+		System.out.println("play Football");
+	}
+}
+class common<T extends Game>
+{
+	T ob;
+	public common(T ob)
+	{
+		this.ob=ob;
+	}
+	public void fun()
+	{
+		ob.play();
+	}
+}
+public class genericsDemo {
+
+	public static void main(String[] args) {
+		//Khela<Football>f1=new Khela<Football>(new Football());
+		common<Football> c1=new common<Football>(new Football());
+		c1.fun();
+		System.out.println("in main   "+c1);
+	}
+
+}
+question 7-
+package Pack1;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
+class Employee implements Serializable
+{
+	int empid;
+	String empname;
+	int desig;
+	int basic;
+	public Employee(int empid, String empname, int desig, int basic) {
+		super();
+		this.empid = empid;
+		this.empname = empname;
+		this.desig = desig;
+		this.basic = basic;
+	}
+	void disp()
+	{
+		System.out.println("Employee [empid=" + empid + ", empname=" + empname + ", desig=" + desig + ", basic=" + basic + "]");
+	}
+	
+}
+
+public class DemoAPI {
+
+	public static void main(String[] args) 
+	{
+	   Employee e1=new Employee(1,"Sarvesh",50,55000);
+	   Employee e2=new Employee(2,"Vishwas",60,88000);
+	   Employee e3=new Employee(3,"Saurabh",70,45000);
+	   Employee e4=new Employee(4,"Ekta",80,95000);
+	   List<Object>l1=new ArrayList<Object>();
+	   l1.add(e1);
+	   l1.add(e2);
+	   l1.add(e3);
+	   l1.add(e4);
+	   try(FileOutputStream fos=new FileOutputStream("d://pussy.txt"))
+	   {
+		   try(ObjectOutputStream oos=new ObjectOutputStream(fos))
+		   {
+			   oos.writeObject(l1);
+		   } 
+		   
+		}
+	   catch(Exception ie)
+	   {
+		   ie.printStackTrace();
+	   }
+	   try(FileInputStream fis=new FileInputStream("d://pussy.txt"))
+	   {
+		   try(ObjectInputStream ois=new ObjectInputStream(fis))
+		   {
+			   ois.readObject();
+		   } 
+		   
+		}
+	   catch (Exception e) 
+	   {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	   }
+	   ListIterator ltr=l1.listIterator();
+	   while(ltr.hasNext())
+	   {
+		   System.out.println(ltr.next());
+	   }
+	   System.out.println(l1);
+	   e1.disp();
+	   e2.disp();
+	   e3.disp();
+	   e4.disp();
+		
+			
+	}
+
+}
+question 8-
+package Pack1;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class HashMapDemo {
+
+	//public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		public static void main(String[] args) {
+			Map<Integer,String> map = new HashMap<>();
+			map.put(1, "Rohit Sharma");
+			map.put(2, "virat Kohli");
+			map.put(3, "David Warner");
+			map.put(4, "joe Root");
+			map.put(5, "Babar Azam");
+			 Scanner sc = new Scanner(System.in);
+			System.out.println("Enter rank:");
+			
+			while(true)
+			{
+				int a = sc.nextInt();
+				if(a==1 || a<=5)
+				{
+					String name = map.get(a);
+					System.out.println(name);
+				}
+				else
+				{
+				System.out.println("Invalid Rank input");
+				}
+			}
+			
+
+

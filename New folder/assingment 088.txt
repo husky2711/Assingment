@@ -1,0 +1,38 @@
+question 1-
+package Threads1;
+
+public class Jh1 extends Thread{
+	public void run() {
+		System.out.println(Thread.currentThread());
+		for(char c='A';c<='J';c++) {
+			System.out.println(c);
+		}
+	}
+	public static void main(String args[]) {
+		
+		Jh1 j=new Jh1();
+		Jh1 k=new Jh1();
+		j.start();
+		k.start();
+	}
+}
+
+question 2-
+package Threads1;
+
+public class Wh1 implements Runnable{
+	public void run() {
+		for(char c='A';c<='J';c++) {
+			System.out.println(c);
+		}
+	}
+	public static void main(String args[]) {
+		Wh1 ub=new Wh1();
+		Wh1 ob=new Wh1();
+		Thread t1=new Thread(ub);
+		Thread t2=new Thread(ob);
+		t1.start();
+		t2.start();
+	}
+}
+

@@ -1,0 +1,47 @@
+class Base
+{  
+    int num1=15;
+   void disp()
+   {
+         System.out.println("base class");
+   }
+    Base(int num1)
+   {
+        this.num1=num1;
+        System.out.println("in base class");
+   }           
+}
+
+class Black extends Base
+{
+     void call()
+    {
+           System.out.println(" on call");
+    }
+    Black()
+    { 
+           super(6);
+           System.out.println("on constructor");
+    }
+}
+
+class White extends Black
+{
+       void read()
+{  
+    System.out.println("read only");
+}
+     White()
+    {
+        //code 
+    }
+}
+
+public class Demo10
+{
+	public static void main(String args[])
+      {
+          White w=new White();
+          w.read();
+       }
+} 
