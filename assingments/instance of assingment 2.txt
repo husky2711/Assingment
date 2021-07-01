@@ -1,0 +1,39 @@
+package assingment;
+
+class Animal{
+	void makeSound() {
+		
+	}
+}
+class Dog extends Animal{
+	void makeSound() {
+		System.out.println("dog barks");
+	}
+}
+class Cat extends Animal{
+	void makeSound() {
+		System.out.println("cat meows");
+	}
+}
+class Tiger extends Animal{
+	void makeSound() {
+		System.out.println("tiger roars");
+	}
+	void Hunting() {
+		System.out.println("hunts deer");
+	}
+}
+public class Demo_c{
+	static void perform(Animal ref) {
+		ref.makeSound();
+		if(ref instanceof Tiger) {
+			Tiger t=(Tiger)ref;
+			t.Hunting();
+		}
+	}
+	public static void main(String args[]) {
+		perform(new Cat());
+		perform(new Dog());
+		perform(new Tiger());
+	}
+}

@@ -1,0 +1,30 @@
+interface A {
+    
+       void disp1();
+}
+
+interface B extends A
+{
+       public void disp2();
+      {
+            System.out.println("in B disp");
+       }
+}
+
+class C implements B
+{ 
+      public void disp2();
+   { 
+          System.out.println("in C disp");
+   }
+     
+}
+public class D
+{
+       public static void main(String args[])
+    {
+            C x=new C();
+              x.disp2();
+   }
+}
+       

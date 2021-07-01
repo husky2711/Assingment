@@ -1,0 +1,318 @@
+question1-
+
+class Base
+{  
+    int num1=15;
+   void disp()
+   {
+         System.out.println("base class");
+   }
+    Base(int num1)
+   {
+        this.num1=num1;
+        System.out.println("in base class");
+   }           
+}
+
+class Black extends Base
+{
+     void call()
+    {
+           System.out.println(" on call");
+    }
+    Black()
+    { 
+           super(6);
+           System.out.println("on constructor");
+    }
+}
+
+class White extends Black
+{
+       void read()
+{  
+    System.out.println("read only");
+}
+     White()
+    {
+        //code 
+    }
+}
+
+public class Demo10
+{
+	public static void main(String args[])
+      {
+          White w=new White();
+          w.read();
+       }
+} 
+
+question 2-
+
+class Vehicle
+{
+    public void start()
+   {
+     System.out.println("parent class");
+   }
+}
+class FourWheeler extends Vehicle
+{
+     public void start()
+    {
+          System.out.println("overridding");
+    }
+}
+
+public class Demo10
+{
+	public static void main(String args[])
+     {
+          FourWheeler f= new FourWheeler();
+           f.start();
+     }
+}
+
+question 3-
+
+class Shape
+{
+       int num1=10;
+       void draw()
+       {
+              System.out.println("shape draw");
+       }
+       Shape()
+       {
+            this.num1=num1;
+        }
+}
+
+class Square extends Shape
+{
+       void sktech()
+       {
+        Syatem.out.println("child shape");
+       }
+       Square(int num3)
+       {
+            Super(9);
+           this.num3=num3;
+       }
+}
+
+class Circle extends Shape
+{
+        void make()
+      {
+            System.out.println("heirarchy");
+      }
+      Circle()
+      {
+          super(5);
+          System.out.println("xyz");
+       }
+}
+
+public class Demo10
+{
+	public static void main(String args[])
+     {
+          Circle c=new Circle();
+           c.make;
+     }
+}
+
+question 4-
+
+class Top1
+{
+     void disp1()
+       {
+          System.out.println("parent class");
+       }
+}
+
+
+class Bottom1 extends Top1
+{
+    void disp1()
+        {
+            //code
+        }
+}
+
+class Bottom2 extends Top1
+{
+    void disp()
+       {
+            //code
+       }
+
+}
+
+class Bottom3 extends Top1
+{
+     void disp()
+       {
+         //code
+       }
+}
+
+public class Demo10
+{
+      static void perform(Top1 ref)
+    {
+          ref.disp();
+
+    }
+	public static void main(String args[])
+      {
+           perform(new Bottom1());
+           perform(new Bottom2());
+       }
+}
+
+question 6-
+package assingment;
+
+interface A {
+    
+    void disp1();
+}
+
+interface B extends A
+{
+     void disp2();
+
+}
+
+class C implements B
+{ 
+	public void disp1()
+	{
+		System.out.println("In the disp1 implementation");
+	}
+   public void disp2()
+   {
+	   System.out.println("In the disp2 implementation");
+   }
+
+  
+}
+public class D
+{
+    public static void main(String args[])
+ {
+         C x=new C();
+           x.disp2();
+           x.disp1();
+}
+}
+    
+question 7-
+package assingment;
+
+class Parent1{
+	int a = 9;
+	
+	void disp1()
+	{
+		System.out.println("in disp1");
+	}
+}
+
+interface Parent2{
+	void disp2();
+}
+class Child extends Parent1 implements Parent2{
+	public void disp2() {
+		System.out.println(" in child ");
+	}
+}
+public class Demoo{
+	public static void main(String args[]) {
+		Child c=new Child();
+		c.disp1();
+		c.disp2();
+	}
+}
+
+question 8-
+
+package assingment;
+
+class Base1{
+	int num1=10;
+	Base1(int num1){
+		this.num1=num1;
+		}
+	void disp() {
+		System.out.println(num1);
+	}
+}
+class Sub1 extends Base1{
+	int num2=5;
+	int a=1;
+	int b=4;
+	Sub1(){
+		super(5);
+	}
+	Sub1(int num2){
+		super(19);
+		this.num2=num2;
+	}
+	Sub1(int a ,int b){
+		super(6);
+		this.a=a;
+		this.b=b;
+		System.out.println("double parametrized constructor");
+	}
+	void disp1() {
+		System.out.println("in sub1 constructor");
+	}
+}
+public class Demo_aa{
+	public static void main(String args[]) {
+		Sub1 s=new Sub1();
+		Sub1 x=new Sub1(5);
+		Sub1 y=new Sub1(12,8);
+		s.disp1();
+		x.disp();
+	}
+}
+
+question 9-
+
+package assingment;
+
+interface Game{
+	void play();
+}
+class Cricket implements Game{
+	public void play() {
+		System.out.println("in class cricket");
+	}
+	
+}
+class Football implements Game{
+	public void play() {
+		System.out.println("in Football class");
+	}
+}
+class Tennis implements Game{
+	public void play() {
+		System.out.println("in Tennisclass");
+	}
+}
+public class Demo_b{
+	 static void perform(Game ref) {
+		ref.play();
+	}
+	public static void main(String args[]) {
+		perform(new Cricket());
+		perform(new Football());
+		perform(new Tennis());
+	}
+}

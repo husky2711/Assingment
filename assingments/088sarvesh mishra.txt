@@ -1,0 +1,175 @@
+question1-
+
+class Base
+{  
+    int num1=15;
+   void disp()
+   {
+         System.out.println("base class");
+   }
+    Base(int num1)
+   {
+        this.num1=num1;
+        System.out.println("in base class");
+   }           
+}
+
+class Black extends Base
+{
+     void call()
+    {
+           System.out.println(" on call");
+    }
+    Black()
+    { 
+           super(6);
+           System.out.println("on constructor");
+    }
+}
+
+class White extends Black
+{
+       void read()
+{  
+    System.out.println("read only");
+}
+     White()
+    {
+        //code 
+    }
+}
+
+public class Demo10
+{
+	public static void main(String args[])
+      {
+          White w=new White();
+          w.read();
+       }
+} 
+
+question 2-
+
+class Vehicle
+{
+    public void start()
+   {
+     System.out.println("parent class");
+   }
+}
+class FourWheeler extends Vehicle
+{
+     public void start()
+    {
+          System.out.println("overridding");
+    }
+}
+
+public class Demo10
+{
+	public static void main(String args[])
+     {
+          FourWheeler f= new FourWheeler();
+           f.start();
+     }
+}
+
+question 3-
+
+class Shape
+{
+       int num1=10;
+       void draw()
+       {
+              System.out.println("shape draw");
+       }
+       Shape()
+       {
+            this.num1=num1;
+        }
+}
+
+class Square extends Shape
+{
+       void sktech()
+       {
+        Syatem.out.println("child shape");
+       }
+       Square(int num3)
+       {
+            Super(9);
+           this.num3=num3;
+       }
+}
+
+class Circle extends Shape
+{
+        void make()
+      {
+            System.out.println("heirarchy");
+      }
+      Circle()
+      {
+          super(5);
+          System.out.println("xyz");
+       }
+}
+
+public class Demo10
+{
+	public static void main(String args[])
+     {
+          Circle c=new Circle();
+           c.make;
+     }
+}
+
+question 4-
+
+class Top1
+{
+     void disp1()
+       {
+          System.out.println("parent class");
+       }
+}
+
+
+class Bottom1 extends Top1
+{
+    void disp1()
+        {
+            //code
+        }
+}
+
+class Bottom2 extends Top1
+{
+    void disp()
+       {
+            //code
+       }
+
+}
+
+class Bottom3 extends Top1
+{
+     void disp()
+       {
+         //code
+       }
+}
+
+public class Demo10
+{
+      static void perform(Top1 ref)
+    {
+          ref.disp();
+
+    }
+	public static void main(String args[])
+      {
+           perform(new Bottom1());
+           perform(new Bottom2());
+       }
+}
